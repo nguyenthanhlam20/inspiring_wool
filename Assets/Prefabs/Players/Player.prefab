@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2176944369950088106}
   - component: {fileID: 2176944369950088107}
-  - component: {fileID: 277470253934738166}
   - component: {fileID: 16889043877748870}
   - component: {fileID: 3693319900370256445}
-  m_Layer: 0
+  - component: {fileID: 277470253934738166}
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -87,23 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &277470253934738166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2176944369950088104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2c0cacbc9c7d0141ac17df0aa916ee2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  throwHeight: 5
-  throwDuration: 2
-  rotationSpeed: 620
-  moveDistance: 4
-  moveDuration: 1
 --- !u!50 &16889043877748870
 Rigidbody2D:
   serializedVersion: 4
@@ -141,3 +124,21 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.45
+--- !u!114 &277470253934738166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2176944369950088104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2c0cacbc9c7d0141ac17df0aa916ee2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  throwHeight: 5
+  throwDuration: 2
+  rotationSpeed: 620
+  moveDistance: 4
+  moveDuration: 1
+  torque: 10

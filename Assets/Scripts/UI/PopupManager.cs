@@ -5,7 +5,7 @@ public class PopupManager : MonoBehaviour
 
     // Declaration of a public static variable named Instance of type SoundManager
     public static PopupManager Instance;
-    [SerializeField] private GameObject _gameoverPopup;
+    [SerializeField] private GameObject _gameOverPopup;
     [SerializeField] private GameObject _blurBackground;
 
     [SerializeField] private Vector2 centerPosition;
@@ -24,14 +24,24 @@ public class PopupManager : MonoBehaviour
             Destroy(gameObject);
         }
         _blurBackground.SetActive(false);
-        _gameoverPopup.SetActive(false);
+        _gameOverPopup.SetActive(false);
     }
 
     public void ShowGameOverPopup()
     {
+        AudioManager.Instance.PlayMusic(false);
+        AudioManager.Instance.PlayEffectByIndex(AudioIndex.GameOver);
+        BasketPool.Instance.gameObject.SetActive(false);
         _blurBackground.SetActive(true);
-        _gameoverPopup.SetActive(true);
-        LeanTween.moveLocal(_gameoverPopup, centerPosition, 1f).setEase(LeanTweenType.easeOutExpo);
+        _gameOverPopup.SetActive(true);
+
+        _gameOverPopup.GetComponent<GameOverPopup>().ShowScore();
+        LeanTween.moveLocal(_gameOverPopup, centerPosition, 1f)
+            .setEase(LeanTweenType.easeOutExpo)
+            .setOnComplete(() =>
+            {
+                Time.timeScale = 0f;
+            });
     }
 
 }
