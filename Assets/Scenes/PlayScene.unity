@@ -1404,7 +1404,7 @@ MonoBehaviour:
   posOffset: {x: 0, y: 0}
   leftLimit: -8.97
   rightLimit: 9.4
-  topLimit: 18.07
+  topLimit: 500
   bottomLimit: 0
 --- !u!1 &812170211
 GameObject:

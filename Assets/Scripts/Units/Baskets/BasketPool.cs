@@ -49,7 +49,7 @@ public class BasketPool : MonoBehaviour
             Basket pooledBasket = GetPooledBasket();
             if (pooledBasket != null)
             {
-                pooledBasket.transform.position = new Vector3(_t.position.x, startPositionY, _t.position.z);
+                pooledBasket.transform.position = new Vector3(0f, startPositionY, _t.position.z);
                 startPositionY += lineSpacing; // Update the position for the next basket
                 i++;
             }

@@ -7,7 +7,7 @@ public class Basket : MonoBehaviour
     [SerializeField] private int direction = 0;
     [SerializeField] private BasketType basketType;
     private Player player;
-
+    private Vector3 targetPosition;
     private float screenWidth;
     private void Awake()
     {
@@ -26,10 +26,10 @@ public class Basket : MonoBehaviour
     private void OnEnable()
     {
         direction = Random.Range(-1, 2);
-        moveSpeed = Random.Range(4f, 5f);
+        moveSpeed = Random.Range(4f, 4.5f);
         if (direction != (int)Direction.Standstill)
         {
-            MoveBackAndForth(direction);
+            MoveBackAndForth();
         }
     }
     private void Start()
@@ -37,18 +37,18 @@ public class Basket : MonoBehaviour
         player = Player.Instance;
     }
 
-    void MoveBackAndForth(int direction)
+    void MoveBackAndForth()
     {
         // Calculate the target position on the other side of the screen
-        Vector3 targetPosition = new Vector3(screenWidth * direction, transform.position.y, transform.position.z);
+        targetPosition = new Vector3(screenWidth * direction, transform.position.y, transform.position.z);
 
         // Move the object to the target position
         LeanTween.moveX(gameObject, targetPosition.x, moveSpeed)
             .setEase(LeanTweenType.linear)
-            .setDelay(0.1f)
             .setOnComplete(() =>
             {
-                MoveBackAndForth(-direction);
+                direction *= -1;
+                MoveBackAndForth();
             });
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -70,6 +70,7 @@ public class Basket : MonoBehaviour
         {
             if (transform.position.y < player.transform.position.y)
             {
+                LeanTween.cancel(gameObject);
                 gameObject.SetActive(false);
             }
         }
